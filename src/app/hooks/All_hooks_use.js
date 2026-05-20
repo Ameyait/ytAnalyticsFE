@@ -79,67 +79,81 @@ export const useVideos = () => {
   // =========================
 
   const fetchCategoryVideos =
-    async (selectedCategory) => {
+  async (selectedCategory) => {
 
-      try {
+    try {
 
-        setLoading(true);
+      setLoading(true);
 
-        setCategory(
-          selectedCategory
-        );
+      setCategory(
+        selectedCategory
+      );
 
-        let data;
+      // GET ALL VIDEOS
+      const data =
+        await getAllVideos();
 
-        // BIRDS
-        if (
-          selectedCategory ===
-          "birds_animals"
-        ) {
+      const allVideos =
+        data.videos || [];
 
-          data =
-            await getBirdsVideos();
+      // ALL
+      if (
+        selectedCategory ===
+        "all"
+      ) {
 
-        }
-
-        // ANIMATION
-        else if (
-          selectedCategory ===
-          "animation"
-        ) {
-
-          data =
-            await getAnimationVideos();
-
-        }
-
-        // ALL
-        else {
-
-          data =
-            await getAllVideos();
-
-        }
-
-        setVideos(
-          data?.videos || []
-        );
-
-      } catch (err) {
-
-        console.error(err);
-
-        setError(
-          "Failed to fetch category videos"
-        );
-
-      } finally {
-
-        setLoading(false);
+        setVideos(allVideos);
 
       }
-    };
 
+      // BIRDS
+      else if (
+        selectedCategory ===
+        "birds"
+      ) {
+
+        const filtered =
+          allVideos.filter(
+            (video) =>
+              video.group_category ===
+              "birds"
+          );
+
+        setVideos(filtered);
+
+      }
+
+      // CARTOON
+      else if (
+        selectedCategory ===
+        "cartoon"
+      ) {
+
+        const filtered =
+          allVideos.filter(
+            (video) =>
+              video.group_category ===
+              "cartoon"
+          );
+
+        setVideos(filtered);
+
+      }
+
+    } catch (err) {
+
+      console.error(err);
+
+      setError(
+        "Failed to filter videos"
+      );
+
+    } finally {
+
+      setLoading(false);
+
+    }
+  };
 
   // =========================
   // SEARCH VIDEOS
