@@ -24,6 +24,10 @@ export const useVideos = () => {
   const [videos, setVideos] =
     useState([]);
 
+const [lastRefreshed,
+  setLastRefreshed] =
+  useState("");
+
   const [loading, setLoading] =
     useState(false);
 
@@ -56,6 +60,10 @@ export const useVideos = () => {
 
       setVideos(
         data?.videos || []
+      );
+
+      setLastRefreshed(
+        data?.last_refreshed || ""
       );
 
     } catch (err) {
@@ -396,6 +404,8 @@ export const useVideos = () => {
     search,
 
     category,
+    
+    lastRefreshed,
 
     setSearch,
 

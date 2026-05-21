@@ -18,6 +18,8 @@ export default function TopPage() {
     fetchTopViewedVideos,
     fetchRecentVideos,
 
+    lastRefreshed,
+
     handleSearchVideos,
     handleScrapeVideos,
 
@@ -89,9 +91,20 @@ export default function TopPage() {
 
                 </h1>
 
-                <p className="mt-3 text-[#fbe9e7] text-sm md:text-lg">
-                  Daily Trending Popular Content
-                </p>
+              <p className="mt-3 text-[#fbe9e7] text-sm md:text-lg leading-6">
+
+  Last Refreshed :
+
+  {" "}
+
+  {lastRefreshed
+    ?.replace("IST", "")
+    ?.replace("at", "•")
+    ?.trim() ||
+
+    "Not Available"}
+
+</p>
 
               </div>
 
@@ -217,7 +230,7 @@ export default function TopPage() {
                     : "bg-[#8d6e63] text-[#f5e6d3] border-[#a1887f]"
                 }`}
               >
-                Recent 🕒
+                Recent 🕒.
               </button> */}
 
             </div>
