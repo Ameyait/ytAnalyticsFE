@@ -40,13 +40,15 @@ export default function TopPage() {
   // =========================
 
   const confirmRefresh =
-    async () => {
+  () => {
 
-      await handleScrapeVideos();
+    // CLOSE MODAL IMMEDIATELY
+    setShowRefreshModal(false);
 
-      setShowRefreshModal(false);
+    // RUN SCRAPE IN BACKGROUND
+    handleScrapeVideos();
 
-    };
+  };
 
 
   return (
@@ -322,30 +324,21 @@ export default function TopPage() {
                       </div>
 
 
-                     {/* CHANNEL */}
+                    {/* CHANNEL */}
 <div className="pl-4 min-w-[220px]">
 
-  {/* CHANNEL NAME */}
-  <div className="text-[#ffe0b2] text-xs md:text-sm font-semibold leading-5">
-
-    {video.channel}
-
-  </div>
-
-  {/* CHANNEL URL */}
   <a
     href={video.channel_url}
     target="_blank"
     rel="noopener noreferrer"
-    className="text-[#d7ccc8] text-[11px] md:text-xs break-all hover:text-white transition-all duration-300"
+    className="text-[#ffe0b2] text-xs md:text-sm font-semibold leading-5 hover:text-white transition-all duration-300 hover:underline"
   >
 
-    {video.channel_url}
+    {video.channel}
 
   </a>
 
 </div>
-
                       {/* VIEWS */}
                       <div className="text-white font-bold text-xs md:text-sm">
                         {video.views}

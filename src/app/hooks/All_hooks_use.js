@@ -131,17 +131,17 @@ const [lastRefreshed,
 
       }
 
-      // CARTOON
+      // MORAL
       else if (
         selectedCategory ===
-        "cartoon"
+        "moral"
       ) {
 
         const filtered =
           allVideos.filter(
             (video) =>
               video.group_category ===
-              "cartoon"
+              "moral"
           );
 
         setVideos(filtered);
@@ -289,49 +289,70 @@ const [lastRefreshed,
     };
 
 
-  // =========================
-  // SCRAPE VIDEOS
-  // =========================
+ // =========================
+// SCRAPE VIDEOS
+// =========================
 
-  const handleScrapeVideos =
-    async () => {
+const handleScrapeVideos =
+  async () => {
 
-      try {
+    try {
 
-        setLoading(true);
+      setLoading(true);
 
-        setCategory(
-          "scrape"
-        );
+      setError(null);
 
-        const response =
-          await scrapeVideos();
+      setCategory("scrape");
 
-        console.log(response);
+      // START SCRAPE
+      const response =
+        await scrapeVideos();
 
-        // REFRESH VIDEOS
-        const updatedVideos =
-          await getAllVideos();
+      console.log(
+        "SCRAPE RESPONSE:",
+        response
+      );
 
-        setVideos(
-          updatedVideos?.videos || []
-        );
+      // WAIT FOR BACKEND
+      await new Promise(
+        (resolve) =>
+          setTimeout(resolve, 8000)
+      );
 
-      } catch (err) {
+      // GET UPDATED VIDEOS
+      const updatedVideos =
+        await getAllVideos();
 
-        console.error(err);
+      console.log(
+        "UPDATED:",
+        updatedVideos
+      );
 
-        setError(
-          "Scraping failed"
-        );
+      setVideos(
+        updatedVideos?.videos || []
+      );
 
-      } finally {
+      setLastRefreshed(
+        updatedVideos?.last_refreshed || ""
+      );
 
-        setLoading(false);
+    } catch (err) {
 
-      }
-    };
+      console.error(
+        "SCRAPE ERROR:",
+        err
+      );
 
+      setError(
+        "Scraping failed"
+      );
+
+    } finally {
+
+      setLoading(false);
+
+    }
+  };
 
   // =========================
   // CLEANUP VIDEOS

@@ -7,7 +7,7 @@ export const API_ROUTES_VIDEOS = {
   // =========================
 
   // Trigger Scraping
-  SCRAPE_VIDEOS: "/scrape",
+  SCRAPE: "/scrape/",
 
   // Cleanup old videos
   CLEANUP_VIDEOS: (days = 3) =>

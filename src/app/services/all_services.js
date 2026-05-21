@@ -8,21 +8,15 @@ import { API_ROUTES_VIDEOS } from "../constants/api_routes";
 // SCRAPE VIDEOS
 // ==============================
 
-export const scrapeVideos = async () => {
-  try {
+export const scrapeVideos =
+  async () => {
 
-    const response = await axiosInstance.post(
-      API_ROUTES_VIDEOS.SCRAPE_VIDEOS
-    );
+    const response =
+      await axiosInstance.post(
+        API_ROUTES_VIDEOS.SCRAPE
+      );
 
     return response.data;
-
-  } catch (error) {
-
-    console.error("SCRAPE VIDEOS ERROR:", error);
-
-    throw error;
-  }
 };
 
 
