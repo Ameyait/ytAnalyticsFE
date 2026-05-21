@@ -199,8 +199,8 @@ export default function TopPage() {
                 Birds 🐦
               </button>
 
-
-              {/* TOP VIEWED */}
+{/*
+              {/* TOP VIEWED 
               <button
                 onClick={
                   fetchTopViewedVideos
@@ -218,8 +218,8 @@ export default function TopPage() {
               </button>
 
 
-               {/* RECENT */}
-                {/* <button
+               {/* RECENT 
+                <button
                 onClick={
                   fetchRecentVideos
                 }
