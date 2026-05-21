@@ -162,14 +162,14 @@ export default function TopPage() {
               <button
                 onClick={() =>
                   fetchCategoryVideos(
-                    "cartoon"
+                    "moral"
                   )
                 }
                 className={`px-4 md:px-6 py-3 rounded-2xl shrink-0 relative text-xs sm:text-sm md:text-base font-bold transition-all duration-300 border hover:-translate-y-2 hover:scale-105 hover:shadow-2xl hover:z-50 hover:border-white/60
 
                 ${
                   category ===
-                  "cartoon"
+                  "moral"
                     ? "bg-white text-[#5d4037] shadow-xl scale-105 border-white"
                     : "bg-[#8d6e63] text-[#f5e6d3] border-[#a1887f]"
                 }`}
@@ -322,11 +322,29 @@ export default function TopPage() {
                       </div>
 
 
-                      {/* CHANNEL */}
-                      <div className="text-[#ffe0b2] text-xs md:text-sm pl-4 min-w-[200px]">
-                        {video.channel}
-                      </div>
+                     {/* CHANNEL */}
+<div className="pl-4 min-w-[220px]">
 
+  {/* CHANNEL NAME */}
+  <div className="text-[#ffe0b2] text-xs md:text-sm font-semibold leading-5">
+
+    {video.channel}
+
+  </div>
+
+  {/* CHANNEL URL */}
+  <a
+    href={video.channel_url}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-[#d7ccc8] text-[11px] md:text-xs break-all hover:text-white transition-all duration-300"
+  >
+
+    {video.channel_url}
+
+  </a>
+
+</div>
 
                       {/* VIEWS */}
                       <div className="text-white font-bold text-xs md:text-sm">
