@@ -293,6 +293,10 @@ const [lastRefreshed,
 // SCRAPE VIDEOS
 // =========================
 
+// =========================
+// SCRAPE VIDEOS
+// =========================
+
 const handleScrapeVideos =
   async () => {
 
@@ -302,7 +306,8 @@ const handleScrapeVideos =
 
       setError(null);
 
-      setCategory("scrape");
+      // ACTIVE BUTTON
+      setCategory("all");
 
       // START SCRAPE
       const response =
@@ -328,13 +333,18 @@ const handleScrapeVideos =
         updatedVideos
       );
 
+      // UPDATE VIDEOS
       setVideos(
         updatedVideos?.videos || []
       );
 
+      // UPDATE REFRESH TIME
       setLastRefreshed(
         updatedVideos?.last_refreshed || ""
       );
+
+      // ACTIVE BUTTON
+      setCategory("all");
 
     } catch (err) {
 

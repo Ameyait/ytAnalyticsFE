@@ -125,23 +125,27 @@ export default function TopPage() {
                   className="flex-1 bg-[#fff8f0] text-black rounded-2xl px-5 py-4 text-sm md:text-base outline-none shadow-md"
                 />
 
-                {/* REFRESH BUTTON */}
-                <button
-                  onClick={() =>
-                    setShowRefreshModal(true)
-                  }
-                  className="bg-[#5d4037] border border-white/20 hover:bg-[#4e342e] text-white px-4 py-3 rounded-2xl text-xs md:text-sm font-bold shadow-lg transition-all whitespace-nowrap hover:scale-105 hover:-translate-y-2 hover:shadow-2xl hover:z-50 relative"
-                >
-                  Refresh
-                </button>
+               {/* REFRESH BUTTON */}
+<button
+  type="button"
+  onClick={() => {
+    console.log(
+      "REFRESH CLICKED"
+    );
 
+    setShowRefreshModal(true);
+  }}
+  className="bg-[#5d4037] border border-white/20 hover:bg-[#4e342e] text-white px-5 py-3 rounded-2xl text-xs md:text-sm font-semibold tracking-wide shadow-lg transition-all duration-300 whitespace-nowrap hover:scale-105 hover:-translate-y-1 hover:shadow-2xl active:scale-95 cursor-pointer relative z-50"
+>
+  Refresh
+</button>
               </div>
 
             </div>
 
 
             {/* FILTER BUTTONS */}
-            <div className="flex gap-5 mt-12 overflow-x-auto overflow-y-visible py-5 px-2 whitespace-nowrap scrollbar-hide relative">
+            <div className="flex gap-5 mt-6 overflow-x-auto overflow-y-visible py-5 px-2 whitespace-nowrap scrollbar-hide relative">
 
               {/* ALL */}
               <button
