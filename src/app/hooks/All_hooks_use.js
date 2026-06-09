@@ -40,7 +40,52 @@ const [lastRefreshed,
   const [category, setCategory] =
     useState("all");
 
+// =========================
+// SEARCH VIDEOS
+// =========================
 
+const handleSearchVideos =
+  async (searchText) => {
+
+    try {
+
+      setLoading(true);
+
+      setSearch(searchText);
+
+      // EMPTY SEARCH
+      if (
+        searchText.trim() === ""
+      ) {
+
+        fetchVideos();
+
+        return;
+      }
+
+      const data =
+        await searchVideos(
+          searchText
+        );
+
+      setVideos(
+        data?.videos || []
+      );
+
+    } catch (err) {
+
+      console.error(err);
+
+      setError(
+        "Search failed"
+      );
+
+    } finally {
+
+      setLoading(false);
+
+    }
+  };
   // =========================
   // GET ALL VIDEOS
   // =========================
@@ -86,7 +131,11 @@ const [lastRefreshed,
   // CATEGORY FILTER
   // =========================
 
-  const fetchCategoryVideos =
+  // =========================
+// CATEGORY FILTER
+// =========================
+
+const fetchCategoryVideos =
   async (selectedCategory) => {
 
     try {
@@ -97,20 +146,26 @@ const [lastRefreshed,
         selectedCategory
       );
 
-      // GET ALL VIDEOS
       const data =
         await getAllVideos();
 
       const allVideos =
-        data.videos || [];
+        data?.videos || [];
 
-      // ALL
+      // UPDATE LAST REFRESHED
+      setLastRefreshed(
+        data?.last_refreshed || ""
+      );
+
+      // ALL VIDEOS
       if (
         selectedCategory ===
         "all"
       ) {
 
-        setVideos(allVideos);
+        setVideos(
+          allVideos
+        );
 
       }
 
@@ -123,11 +178,16 @@ const [lastRefreshed,
         const filtered =
           allVideos.filter(
             (video) =>
-              video.group_category ===
-              "birds"
+              video.group_category
+                ?.toLowerCase()
+                .includes(
+                  "birds"
+                )
           );
 
-        setVideos(filtered);
+        setVideos(
+          filtered
+        );
 
       }
 
@@ -140,11 +200,60 @@ const [lastRefreshed,
         const filtered =
           allVideos.filter(
             (video) =>
-              video.group_category ===
-              "moral"
+              video.group_category
+                ?.toLowerCase()
+                .includes(
+                  "moral"
+                )
           );
 
-        setVideos(filtered);
+        setVideos(
+          filtered
+        );
+
+      }
+
+      // KIDS
+      else if (
+        selectedCategory ===
+        "kids"
+      ) {
+
+        const filtered =
+          allVideos.filter(
+            (video) =>
+              video.group_category
+                ?.toLowerCase()
+                .includes(
+                  "kids"
+                )
+          );
+
+        setVideos(
+          filtered
+        );
+
+      }
+
+      // RHYMES
+      else if (
+        selectedCategory ===
+        "rhymes"
+      ) {
+
+        const filtered =
+          allVideos.filter(
+            (video) =>
+              video.group_category
+                ?.toLowerCase()
+                .includes(
+                  "rhymes"
+                )
+          );
+
+        setVideos(
+          filtered
+        );
 
       }
 
@@ -162,54 +271,6 @@ const [lastRefreshed,
 
     }
   };
-
-  // =========================
-  // SEARCH VIDEOS
-  // =========================
-
-  const handleSearchVideos =
-    async (searchText) => {
-
-      try {
-
-        setLoading(true);
-
-        setSearch(searchText);
-
-        // EMPTY SEARCH
-        if (
-          searchText.trim() === ""
-        ) {
-
-          fetchVideos();
-
-          return;
-        }
-
-        const data =
-          await searchVideos(
-            searchText
-          );
-
-        setVideos(
-          data?.videos || []
-        );
-
-      } catch (err) {
-
-        console.error(err);
-
-        setError(
-          "Search failed"
-        );
-
-      } finally {
-
-        setLoading(false);
-
-      }
-    };
-
 
   // =========================
   // TOP VIEWED VIDEOS

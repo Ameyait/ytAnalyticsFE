@@ -139,6 +139,8 @@ export default function TopPage() {
 >
   Refresh
 </button>
+
+
               </div>
 
             </div>
@@ -202,6 +204,43 @@ export default function TopPage() {
               >
                 Birds 🐦
               </button>
+              {/* KIDS */}
+<button
+  onClick={() =>
+    fetchCategoryVideos(
+      "kids"
+    )
+  }
+  className={`px-4 md:px-6 py-3 rounded-2xl shrink-0 relative text-xs sm:text-sm md:text-base font-bold transition-all duration-300 border hover:-translate-y-2 hover:scale-105 hover:shadow-2xl hover:z-50 hover:border-white/60
+
+  ${
+    category ===
+    "kids"
+      ? "bg-white text-[#5d4037] shadow-xl scale-105 border-white"
+      : "bg-[#8d6e63] text-[#f5e6d3] border-[#a1887f]"
+  }`}
+>
+  Kids 🎈
+</button>
+
+{/* RHYMES */}
+<button
+  onClick={() =>
+    fetchCategoryVideos(
+      "rhymes"
+    )
+  }
+  className={`px-4 md:px-6 py-3 rounded-2xl shrink-0 relative text-xs sm:text-sm md:text-base font-bold transition-all duration-300 border hover:-translate-y-2 hover:scale-105 hover:shadow-2xl hover:z-50 hover:border-white/60
+
+  ${
+    category ===
+    "rhymes"
+      ? "bg-white text-[#5d4037] shadow-xl scale-105 border-white"
+      : "bg-[#8d6e63] text-[#f5e6d3] border-[#a1887f]"
+  }`}
+>
+  Rhymes 🎵
+</button>
 
 {/*
               {/* TOP VIEWED 
